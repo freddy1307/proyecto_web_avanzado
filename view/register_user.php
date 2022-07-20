@@ -19,70 +19,9 @@
 <section class="background-radial-gradient overflow-hidden h-100">
 <?php
 
-include 'functions.php';
-
-$genders=array
-(
-    'H' => 'Hombre',
-    'M' => 'Mujer',
-    'N' => 'No definido',
-);
-
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-    $last_name = $_GET['last_name'];
-    $second_name = $_GET['second_name'];
-    $username = $_GET['username'];
-    $gender = $_GET['gender'];
-    $password = $_GET['password'];
-    $confirm_password = $_GET['confirm_password'];
-
-    if (strlen($password) < 6 ) {
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <div class="d-flex">
-                        <div>
-                            <strong>Error</strong> La contraseña debe tener una longitud mayor a 6 caracteres.                         
-                        </div>
-                        <div class="ms-auto">
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="btn">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                    
-                        </div>
-                </div>
-            </div>';
-
-    } else if ($password !== $confirm_password) {
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <div class="d-flex">
-                        <div>
-                            <strong>Error</strong> La contraseñas capturadas no concuerdan.                         
-                        </div>
-                        <div class="ms-auto">
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="btn">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                    
-                        </div>
-                </div>
-            </div>';
-    } else {
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <div class="d-flex">
-                        <div>
-                            <h4 class="alert-heading">Datos correctos!</h4>                            
-                        </div>
-                        <div class="ms-auto">
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="btn">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                    
-                        </div>
-                </div>
-                  <span>Tu nombre es: '.$name.' '.$last_name.' '.$second_name.'</span></br>
-                  <span>Tu usuario es: '.ucfirst($username).'</span></br>
-                  <span>Tu genero es: '.changeGenderValueToFullValue($gender).'</span></br>
-                </div>';
-        header( "refresh:3; url=index.php" );
-    }
-}
+include '../controller/user.php';
+$user_controller = new UserController();
+session_destroy();
 
 ?>
         <div class="d-flex align-items-center justify-content-center h-100 mh-100">
@@ -96,7 +35,7 @@ if (isset($_GET['name'])) {
                         <div class="card bg-glass">
                             <div class="card-body px-4 py-5 px-md-5">
                                 <h3 class="text-center mb-4">Crear una cuenta</h3>
-                                <form method="get" action="register_user.php" name="signin-form" class="row gy-2 gx-3 align-items-center">
+                                <form method="post" action="register_user.php" name="signin-form" class="row gy-2 gx-3 align-items-center">
                                     <div class="form-outline mb-4">
                                         <input type="text" class="form-control" id="nameInput" name="name" required value="<?php echo (isset($_GET['name']))?$_GET['name']:'';?>">
                                         <label class="form-label" for="nameInput">Nombre</label>
@@ -126,7 +65,7 @@ if (isset($_GET['name'])) {
                                             <select class="form-select"  id="genderSelect" name="gender">
                                                 <option value="">Selecciona tu genero</option>
                                                 <?php
-                                                foreach($genders as $key => $value) {
+                                                foreach($user_controller->genders as $key => $value) {
                                                     if (isset($_GET['gender'])) {
                                                         if ($_GET['gender'] === $key) {
                                                             echo '<option selected value="'.$key.'">'.$value.'</option>';

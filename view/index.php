@@ -19,29 +19,9 @@
     <section class="background-radial-gradient overflow-hidden h-100">
 <?php
 
-if (isset($_POST['username']) and isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    # TO DO: Cuando se vea la parte de base de datos se validara desde ahi, ahorita esta fixeado los valores.
-    if ($username === 'lavalenc' && $password === '123456') {
-        header("Location: dashboard.php");
-    } else {
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <div class="d-flex">
-                        <div>
-                            <strong>Error</strong> El usuario o la contresaña son incorrectos.                         
-                        </div>
-                        <div class="ms-auto">
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="btn">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                    
-                        </div>
-                </div>
-            </div>';
-    }
-
-}
+session_start();
+require_once ('../controller/login.php');
+new LoginController();
 
 ?>
         <div class="d-flex align-items-center justify-content-center h-100">

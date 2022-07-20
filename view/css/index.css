@@ -39,3 +39,7 @@ body { height:100%; }
     background-color: hsla(0, 0%, 100%, 0.9) !important;
     backdrop-filter: saturate(200%) blur(25px);
 }
+
+.bg-violet {
+    background: radial-gradient(#44006b, #ad1fff);
+}

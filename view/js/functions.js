@@ -4,9 +4,3 @@ $("button[data-dismiss='alert']").click(function(){
     $('.alert').alert('close');
 
 })
-
-
-$("#addEmployee").click(function(){
-    $('#addEmployeeModal').addClass('show');
-
-})
