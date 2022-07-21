@@ -37,8 +37,8 @@ class ContactModel{
             return false;
         }
     }
-    public function delete($condicion){
-        $eli="delete from contact_book where ".$condicion;
+    public function delete($contact_id){
+        $eli="delete from contact_book where contact_id=".$contact_id;
         $res=$this->db->query($eli);
         if ($res) {
             return true;

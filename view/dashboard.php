@@ -203,8 +203,8 @@ $contact_cont->get_contacts();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" onclick="closeAddContactModal()">
-                    <input type="submit" class="btn btn-success" value="Add" >
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar" onclick="closeAddContactModal()">
+                    <input type="submit" class="btn btn-success" value="Agregar" >
                 </div>
             </form>
         </div>
@@ -239,8 +239,8 @@ $contact_cont->get_contacts();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" onclick="closeEditContactModal()">
-                    <input type="submit" class="btn btn-info" value="Update">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar" onclick="closeEditContactModal()">
+                    <input type="submit" class="btn btn-info" value="Actualizar">
                 </div>
             </form>
         </div>
@@ -250,19 +250,19 @@ $contact_cont->get_contacts();
 <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form method="post" action="dashboard.php?action=delete">
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Contact</h4>
+                    <h4 class="modal-title">Eliminar Contacto</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeDeleteContactModal()">&times;</button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="contact-id" id="delete-contact">
-                    <p>Are you sure you want to delete these Records?</p>
-                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    <p>Estas seguro que deseas eliminar este contacto?</p>
+                    <p class="text-warning"><small>Esta accion no se podra deshacer.</small></p>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" onclick="closeDeleteContactModal()">
-                    <input type="submit" class="btn btn-danger" value="Delete">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar" onclick="closeDeleteContactModal()">
+                    <input type="submit" class="btn btn-danger" value="Eliminar">
                 </div>
             </form>
         </div>

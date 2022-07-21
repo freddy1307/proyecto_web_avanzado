@@ -40,7 +40,9 @@ class ContactController
             $this->edit_contact();
         }
 
-
+        if ($this->action && $this->action == 'delete') {
+            $this->delete_contact();
+        }
     }
 
     function validate_session_exists() {
@@ -141,6 +143,29 @@ class ContactController
                 </div>';
             header( "refresh:2; url=dashboard.php" );
         }
+    }
+
+    function delete_contact() {
+        $contact_id = $_POST["contact-id"];
+
+        $status = $this->model->delete($contact_id);
+        if ($status) {
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="d-flex">
+                        <div>
+                            <h4 class="alert-heading">Contacto eliminado!</h4>                            
+                        </div>
+                        <div class="ms-auto">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="btn">
+                                <span aria-hidden="true">&times;</span>
+                              </button>                    
+                        </div>
+                </div>
+                  <span>Contacto eliminado correctamente</span></br>
+                </div>';
+            header( "refresh:2; url=dashboard.php" );
+        }
+
     }
 
 }
